@@ -52,11 +52,11 @@ def optimize_data():
     print(f"FINAL COUNT: {len(recent_cs_FSU_paper_ids)} papers found for {MY_UNI_NAME} (CS, >{MIN_YEAR}).")
 
     # --- SAVE NODES ---
-    # Now we grab the titles for these specific papers
+    # Now we grab the DOIs for these specific papers
     print("Step 5: Saving Nodes...")
-    # We iterate papers one last time to get titles for only the final IDs
+    # We iterate papers one last time to get DOIs for only the final IDs
     node_data = []
-    for chunk in pd.read_csv("data/SciSciNet_Papers.tsv", sep="\t", usecols=['PaperID', 'Title', 'Year'], chunksize=100000):
+    for chunk in pd.read_csv("data/SciSciNet_Papers.tsv", sep="\t", usecols=['PaperID', 'DOI', 'Year'], chunksize=100000):
         found = chunk[chunk['PaperID'].isin(recent_cs_FSU_paper_ids)]
         node_data.append(found)
     
